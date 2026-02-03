@@ -1,56 +1,101 @@
 <!DOCTYPE html>
 <html lang="fr">
+<!-- 
+    PROJET E-COMMERCE : ENSITSHOP
+    ==============================
+    Site de vente en ligne complètement fonctionnel
+    Fonctionnalités principales :
+    - Affichage dynamique des produits
+    - Filtre par catégorie et recherche
+    - Tri par prix et nom
+    - Panier avec sauvegarde locale
+    - Formulaire de contact
+    - Design responsive (mobile, tablette, desktop)
+-->
+
 <head>
+    <!-- Meta tags : informations essentielles pour le navigateur -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ENSITSHOP - Boutique en ligne</title>
-    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Polices Google : Poppins en différents poids -->
+    <!-- (300=light, 400=normal, 600=semibold, 700=bold) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome : icônes modernes (panier, loupe, etc.) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Fichier CSS personnalisé : tous les styles du site -->
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <!-- En-tête -->
+    <!-- ========================================
+         HEADER / BARRE DE NAVIGATION
+         ======================================== -->
     <header>
         <div class="container">
+            <!-- Logo et nom du site -->
             <div class="logo">
                 <i class="fas fa-shopping-bag"></i>
                 <h1>ENSITSHOP</h1>
             </div>
+            
+            <!-- Menu de navigation principal -->
             <nav>
                 <ul>
-                    <li><a href="#" class="active">Accueil</a></li>
+                    <li><a href="#home" class="active">Accueil</a></li>
                     <li><a href="#products">Produits</a></li>
                     <li><a href="#about">À propos</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
+            
+            <!-- Actions du header : recherche et panier -->
             <div class="header-actions">
+                <!-- Barre de recherche -->
                 <div class="search-box">
                     <input type="text" id="searchInput" placeholder="Rechercher un produit...">
                     <i class="fas fa-search"></i>
                 </div>
+                
+                <!-- Bouton du panier avec compteur -->
                 <button class="cart-btn" id="cartBtn">
                     <i class="fas fa-shopping-cart"></i>
+                    <!-- Badge rouge affichant le nombre d'articles -->
                     <span class="cart-count" id="cartCount">0</span>
                 </button>
             </div>
         </div>
     </header>
-
-    <!-- Section principale -->
-    <section class="hero">
+    
+    <!-- ========================================
+         SECTION HÉRO (Accueil)
+         ======================================== -->
+    <!-- Cette section est l'en-tête visuelle principal du site -->
+    <section class="hero" id="home">
         <div class="hero-content">
-            <h2>Bienvenue chez ENSITSHOP</h2>
+            <!-- Titre principal avec animation -->
+            <h2 class="animate-text">Bienvenue chez ENSITSHOP</h2>
+            <!-- Sous-titre -->
             <p>Découvrez nos produits de qualité à des prix imbattables</p>
+            <!-- Bouton d'appel à l'action : scrolle vers la section produits -->
             <button class="cta-btn" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">
                 Découvrir nos produits
             </button>
         </div>
     </section>
-
-    <!-- Filtres -->
+    
+    <!-- ========================================
+         SECTION FILTRES ET TRI DES PRODUITS
+         ======================================== -->
     <section class="filters" id="products">
         <div class="container">
             <h2>Nos Produits</h2>
+            
+            <!-- Boutons de filtrage par catégorie -->
+            <!-- data-category : attribut personnalisé pour stocker la catégorie -->
             <div class="filter-buttons">
                 <button class="filter-btn active" data-category="all">Tous</button>
                 <button class="filter-btn" data-category="electronics">Électronique</button>
@@ -58,6 +103,8 @@
                 <button class="filter-btn" data-category="books">Livres</button>
                 <button class="filter-btn" data-category="home">Maison</button>
             </div>
+            
+            <!-- Menu de tri des produits -->
             <div class="sort-options">
                 <label for="sortSelect">Trier par:</label>
                 <select id="sortSelect">
@@ -69,26 +116,144 @@
             </div>
         </div>
     </section>
-
-    <!-- Grille de produits -->
+    
+    <!-- ========================================
+         SECTION GRILLE DES PRODUITS
+         ======================================== -->
+    <!-- Conteneur vide : rempli dynamiquement par JavaScript -->
     <section class="products-section">
         <div class="container">
-            <div class="products-grid" id="productsGrid">
-                <!-- Les produits seront chargés ici -->
+            <!-- Cette div sera remplie automatiquement avec les produits -->
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
+    
+    <!-- ========================================
+         SECTION VIDÉOS ET BEST-SELLERS
+         ======================================== -->
+    <section class="promo-section">
+    <div class="container">
+        <h2>Espace Nouveautés & Démo</h2>
+        <!-- Disposition sur 2 colonnes : vidéos à gauche, slider à droite -->
+        <div class="promo-layout">
+            <!-- Colonne gauche : vidéos YouTube -->
+            <div class="video-side">
+                <div class="video-item">
+                    <iframe src="https://www.youtube.com/embed/eoxyE5jnjxw" frameborder="0" allowfullscreen></iframe>
+                    <p>Focus : Laptop Performance</p>
+                </div>
+                <div class="video-item">
+                    <iframe src="https://www.youtube.com/embed/ogNMW07uTts" frameborder="0" allowfullscreen></iframe>
+                    <p>Focus : Audio Engineering</p>
+                </div>
+            </div>
+
+            <div class="slider-side">
+                <div class="slider-container">
+                    <div class="slides">
+                        <div class="slide active">
+                            <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?q=80&w=600" alt="Dell XPS">
+                            <div class="slide-info">
+                                <h3>Dell XPS 13</h3>
+                                <span>850.000 FCFA</span>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <img src="https://images.unsplash.com/photo-1598333105553-d14a2a61be6b?q=80&w=600" alt="Console Midas">
+                            <div class="slide-info">
+                                <h3>Console Midas MR18</h3>
+                                <span>450.000 FCFA</span>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=600" alt="iPhone">
+                            <div class="slide-info">
+                                <h3>Smartphone Pro</h3>
+                                <span>650.000 FCFA</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+                    <button class="next" onclick="changeSlide(1)">&#10095;</button>
+                </div>
+                <p class="slider-title">Nos Best-Sellers</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <h2>À propos de nous</h2>
+                <div class="about-text">
+                    <p>ENSITSHOP est une plateforme de commerce électronique dédiée à vous offrir les meilleurs produits de qualité à des prix imbattables.</p>
+                    <p>Depuis notre création, nous nous engageons à fournir une expérience d'achat exceptionnelle avec un service client irréprochable.</p>
+                    <p>Notre mission est de rendre le shopping en ligne accessible à tous, avec une sélection variée de produits électroniques, vêtements, livres et articles de maison.</p>
+                </div>
+                <div class="about-values">
+                    <div class="value-item">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Qualité</h3>
+                        <p>Tous nos produits sont sélectionnés avec soin</p>
+                    </div>
+                    <div class="value-item">
+                        <i class="fas fa-shipping-fast"></i>
+                        <h3>Livraison rapide</h3>
+                        <p>Livraison express partout en Côte d'Ivoire</p>
+                    </div>
+                    <div class="value-item">
+                        <i class="fas fa-lock"></i>
+                        <h3>Sécurité</h3>
+                        <p>Vos données sont protégées et sécurisées</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-
-    <!-- Panier -->
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Nous contacter</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <p><a href="mailto:contact@ensitshop.tn">contact@ensitshop.tn</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <h3>Téléphone</h3>
+                        <p><a href="tel:+22501020304">+225 0102030405</a></p>
+                        <p><a href="tel:+22507470237">+225 0747023791</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Localisation</h3>
+                        <p>Abidjan, Côte d'Ivoire</p>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <input type="text" id="contactName" placeholder="Votre nom" required>
+                    <input type="email" id="contactEmail" placeholder="Votre email" required>
+                    <textarea id="contactMessage" placeholder="Votre message" rows="5" required></textarea>
+                    <button type="submit" class="submit-btn">Envoyer le message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- Cart Modal Section -->
     <div class="modal" id="cartModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Mon Panier</h2>
                 <button class="close-btn" id="closeCart">&times;</button>
             </div>
-            <div class="modal-body" id="cartItems">
-                <!-- Les articles du panier seront affichés ici -->
-            </div>
+            <!-- Cart Items Section -->
+            <div class="modal-body" id="cartItems"></div>
+            <!-- Cart Footer Section -->
             <div class="modal-footer">
                 <div class="cart-total">
                     <h3>Total: <span id="cartTotal">0 FCFA</span></h3>
@@ -98,8 +263,7 @@
             </div>
         </div>
     </div>
-
-    <!-- Pied de page -->
+    <!-- Footer Section -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -108,32 +272,21 @@
                     <p>Votre destination shopping en ligne</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Liens rapides</h3>
-                    <ul>
-                        <li><a href="#">Accueil</a></li>
-                        <li><a href="#products">Produits</a></li>
-                        <li><a href="#">Conditions</a></li>
-                        <li><a href="#">Politique de confidentialité</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
                     <h3>Contact</h3>
                     <p><i class="fas fa-envelope"></i> contact@ensitshop.tn</p>
-                    <p><i class="fas fa-phone"></i> +225 0102030405</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
+                    <p><i class="fas fa-phone"></i> +225 0102030405 / +225 0747023791</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 ENSITSHOP.</p>
+                <p>&copy; <span id="year"></span> ENSITSHOP.</p>
             </div>
         </div>
     </footer>
-
+    <!-- Toast Notifications Container -->
+    <div id="toast-container"></div>
+    <!-- JavaScript File -->
     <script src="script.js"></script>
 </body>
-</html>
+<!-- End of index.html -->
 
+</html>
